@@ -1,0 +1,127 @@
+/* 내가 작성해본 css코드 
+ul {
+    margin:0;
+    padding: 0;
+    display:flex;
+    font-family: 'Hahmlet', serif;
+    text-align: center; 이걸 했더니 코인 아이콘의 위치가 가운데로 옴
+}
+
+
+li {
+    list-style-type: none;
+    
+}
+
+nav { 
+    margin: 10px; 이렇게 하게 되면 nav 3개의 영역으로 쪼개짐
+    padding : 20px;
+    font-family: 'Gowun Batang', serif;
+}
+
+p { 
+   
+    font-family: 'Hahmlet', serif;
+}
+
+.regular {
+    font-weight: Extra-light 200;
+} */
+
+/* 디자인 요소에서는 너무 극단적인 검은색이나 흰색은 사용자에게 좋지 않다고 한다. 그래서 좀 온화한 톤 필요
+색깔을 일일이 바꾸기 번거로우니 CSS에서는 변수 할당해서 사용. 한 곳에서 지정하면 모두 바뀜(변수 호출을 해야)*/
+:root {
+    --text-color: #f0f4f5;
+    --background-color: #263343;
+    --accent-color: #d4d4d4;
+}
+
+body { 
+    margin:0; /*spacing이 없어짐*/
+    font-family: 'Hahmlet', serif;;
+}
+
+a {
+    text-decoration: none;
+    /*color:white*/ 
+    /* :root에서 변수를 할당했으니 변수 활용해보기*/ color:var(--text-color);
+}
+.navbar {
+    display:flex;
+    justify-content: space-between; /*스페이스바를 사이사이에 넣어준다*/
+    align-items:center;
+    background: #263343;
+    padding:8px 12px;
+}
+
+.navbar_logo { 
+    font-size: 24px;
+    color:white;
+
+}
+
+.navbar_logo i {
+    color : yellow;
+}
+
+.navbar_menu {
+    display: flex;
+    list-style-type: none;
+    padding-left: 0; /*이걸 하기 전까지 중간 위치가 아님. 약간 치우쳐저 있음. padding값이 있어서 그럼*/
+
+}
+
+.navbar_menu li {
+    padding: 8px 12px; /*padding은 백그라운드 영역을 좀 더 넓게 하고 싶어서. 박스 안에 넣기 때문에 마우스 클릭할 수 있는 영역 넓어짐 margin을 넣으면 클릭할 수 있는 범위가 좁아짐*/
+}
+
+.navbar_menu li:hover {
+    background-color: #d49466;
+    border-radius: 4px;
+}
+
+.navbar_icons {
+    
+    list-style-type: none;
+    color:white;
+    display: flex;
+    padding-left:0;
+}
+
+.navbar_icons li { 
+    padding: 8px 12px;
+}
+
+/* 문서(메뉴 텍스트)흐름에서 나와서 오른쪽에 토글버튼 붙이기*/ 
+.navbar_toggleBtn {
+    position: absolute;
+    right:100px;
+    font-size: 24px;
+    color: #d49466;
+}
+
+/* 브라우저 창이 작아지면 원치 않은 레이아웃이 된다. 그래서 레이아웃을 반응형으로 바꾸기 위해 미디어쿼리 사용*/ 
+@media screen and (max-width: 768px){
+    .navbar {
+    /*창이 작아지면 메뉴를 전부 밑으로 내린다 아이템의 방향을 아래로 바꾼다.*/ 
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+}
+.navbar_menu {
+    flex-direction: column;
+    align-items: center; /*이렇게 하면 왼쪽으로 쏠림. 그러나 이걸 해도 변화가 없음 메뉴 너비가 작기 때문에*/
+    width:100%; /*너비 크기 늘려주기*/
+
+}
+.navbar_menu li {
+    width:100%;
+    text-align: center; /*이렇게 안해주면 왼쪽으로 또 쏠림*/
+}
+.navbar_icons {
+    justify-content: center;
+    width:100%; /*리스트 중간에 들어간 패딩값이 100이 아니기 때문에 완전 가운데 정렬이 안된다. 그래서 .navbar_icons{에서 padding-left:0으로 바꿈} */
+}
+}
+
